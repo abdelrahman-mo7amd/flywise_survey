@@ -1,0 +1,359 @@
+/* ==========================================================================
+   FlyWise - style.css
+   Design tokens + component styles. Tailwind (CDN) handles utility layout;
+   this file carries the brand signature: glass surfaces, gradients, motion,
+   and the bilingual type system.
+   ========================================================================== */
+
+:root {
+  /* Core brand palette: deep blue -> purple. No pink. */
+  --navy: #101B42;      /* deep navy, used for dark surfaces / strong text */
+  --blue: #2A3FA0;      /* primary blue */
+  --indigo: #4A3AD1;    /* blue-purple midpoint, kept as the "indigo" alias used across components */
+  --violet: #6D42D6;    /* secondary purple accent */
+
+  --ink-900: #10142B;
+  --ink-700: #3A3F63;
+  --ink-500: #6B7091;
+  --ink-300: #A7ABC6;
+  --ink-100: #E7E9F2;
+
+  --white: #FFFFFF;
+  --surface: #F5F6FB;   /* simple neutral section background, replaces cream/beige */
+
+  --gradient-brand: linear-gradient(120deg, var(--navy) 0%, var(--blue) 55%, var(--violet) 100%);
+  --gradient-soft: linear-gradient(160deg, rgba(42,63,160,0.07) 0%, rgba(109,66,214,0.06) 100%);
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+
+  --shadow-soft: 0 16px 44px -20px rgba(16, 27, 66, 0.28);
+  --shadow-card: 0 8px 24px -12px rgba(16, 20, 43, 0.10);
+
+  --font-display-en: "Plus Jakarta Sans", sans-serif;
+  --font-body-en: "Inter", sans-serif;
+  /* Single Arabic typeface everywhere, as requested; no mixing. */
+  --font-display-ar: "IBM Plex Sans Arabic", sans-serif;
+  --font-body-ar: "IBM Plex Sans Arabic", sans-serif;
+}
+
+html[dir="rtl"] {
+  --font-display: var(--font-display-ar);
+  --font-body: var(--font-body-ar);
+}
+html[dir="ltr"] {
+  --font-display: var(--font-display-en);
+  --font-body: var(--font-body-en);
+}
+
+* { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink-900);
+  background: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display { font-family: var(--font-display); }
+
+h1, h2, h3, h4, .display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4, html[dir="rtl"] .display {
+  letter-spacing: 0;
+}
+
+/* ---------- Utility: gradient text ---------- */
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Glassmorphism surfaces ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-card);
+}
+
+.glass-dark {
+  background: rgba(14, 11, 31, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.icon-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(42, 63, 160, 0.08);
+}
+
+.card {
+  border-radius: var(--radius-md);
+  transition: transform 0.45s cubic-bezier(.16,1,.3,1), box-shadow 0.45s cubic-bezier(.16,1,.3,1);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.9rem 1.9rem;
+  transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s cubic-bezier(.16,1,.3,1), background 0.3s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--gradient-brand);
+  color: var(--white);
+  box-shadow: 0 12px 30px -10px rgba(94, 43, 255, 0.55);
+}
+.btn-primary:hover { transform: translateY(-2px) scale(1.015); box-shadow: 0 18px 40px -12px rgba(94, 43, 255, 0.6); }
+.btn-secondary {
+  background: rgba(14, 11, 31, 0.04);
+  color: var(--ink-900);
+  border: 1px solid rgba(14, 11, 31, 0.12);
+}
+.btn-secondary:hover { background: rgba(14, 11, 31, 0.08); transform: translateY(-2px); }
+.btn-ghost {
+  color: var(--ink-700);
+}
+.btn-ghost:hover { color: var(--indigo); }
+
+/* ---------- Nav ---------- */
+#site-nav {
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+#site-nav.scrolled {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(14,11,31,0.06);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.4s; }
+
+/* ---------- Timeline (How It Works) ---------- */
+.timeline-track {
+  position: relative;
+}
+.timeline-line {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ink-100), var(--ink-100));
+}
+html[dir="rtl"] .timeline-line { background: linear-gradient(-90deg, var(--ink-100), var(--ink-100)); }
+
+.timeline-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--ink-300);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+.timeline-step.active .timeline-node,
+.timeline-step:hover .timeline-node {
+  background: var(--gradient-brand);
+  border-color: transparent;
+  transform: scale(1.3);
+}
+
+/* ---------- Survey ---------- */
+#survey-progress-track {
+  background: var(--ink-100);
+}
+#survey-progress-fill {
+  background: var(--gradient-brand);
+  transition: width 0.5s cubic-bezier(.16,1,.3,1);
+}
+
+.option-card {
+  border: 1.5px solid var(--ink-100);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+.option-card:hover { border-color: var(--violet); transform: translateY(-2px); }
+.option-card.selected {
+  border-color: var(--indigo);
+  background: linear-gradient(135deg, rgba(94,43,255,0.07), rgba(252,109,171,0.07));
+}
+.option-card.selected .option-dot {
+  border-color: var(--indigo);
+  background: var(--gradient-brand);
+}
+.option-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--ink-300);
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.scale-dot {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid var(--ink-100);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+.scale-dot:hover { border-color: var(--violet); transform: translateY(-2px); }
+.scale-dot.selected {
+  background: var(--gradient-brand);
+  color: white;
+  border-color: transparent;
+  transform: scale(1.08);
+}
+
+.survey-step {
+  display: none;
+}
+.survey-step.active {
+  display: block;
+  animation: step-in 0.5s cubic-bezier(.16,1,.3,1);
+}
+@keyframes step-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+textarea.survey-textarea {
+  border: 1.5px solid var(--ink-100);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.25s ease;
+}
+textarea.survey-textarea:focus {
+  outline: none;
+  border-color: var(--indigo);
+}
+
+/* ---------- Views (landing / survey / thanks) ----------
+   !important here is intentional: Tailwind's own `flex`/`block` utility
+   classes (used inside these sections for internal layout) share the same
+   selector specificity as a plain class rule, so whichever stylesheet
+   happens to be injected last would otherwise win the cascade. This rule
+   must always be the one that decides whether a whole view is shown.
+   app.js also sets display inline as a second, independent safeguard. */
+.view { display: none !important; }
+.view.active { display: block !important; }
+#view-thanks.active { display: flex !important; }
+
+/* ---------- Success check ---------- */
+.success-circle {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw-circle 0.9s ease forwards 0.1s;
+}
+.success-check {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: draw-check 0.5s ease forwards 0.9s;
+}
+@keyframes draw-circle { to { stroke-dashoffset: 0; } }
+@keyframes draw-check { to { stroke-dashoffset: 0; } }
+
+/* ---------- Focus visibility (accessibility) ---------- */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .option-card:focus-visible {
+  outline: 2.5px solid var(--indigo);
+  outline-offset: 3px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Language toggle ----------
+   The pill's left/width are set directly in JS from the active button's
+   measured bounding box (see app.js). This is deliberate: under dir="rtl"
+   the flex row's visual child order mirrors automatically, so any CSS rule
+   that assumes a fixed physical side (e.g. "second child = right") breaks.
+   Measuring the real box avoids that class of bug entirely. */
+.lang-toggle {
+  display: inline-flex;
+  border-radius: 999px;
+  background: rgba(16,20,43,0.05);
+  padding: 3px;
+  position: relative;
+}
+.lang-toggle button {
+  position: relative;
+  z-index: 1;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-500);
+  transition: color 0.3s ease;
+}
+.lang-toggle button.active { color: white; }
+.lang-toggle .lang-pill {
+  position: absolute;
+  top: 3px; bottom: 3px;
+  border-radius: 999px;
+  background: var(--gradient-brand);
+  transition: left 0.35s cubic-bezier(.16,1,.3,1), width 0.35s cubic-bezier(.16,1,.3,1);
+  z-index: 0;
+}
+
+/* ---------- Mobile nav ---------- */
+#mobile-nav {
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+#mobile-nav.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+::selection { background: var(--violet); color: white; }
+
+/* Admin-specific link (kept out of nav, reachable directly) */
+.admin-link { opacity: 0.15; }
+.admin-link:hover { opacity: 0.6; }

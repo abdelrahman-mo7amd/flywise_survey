@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FlyWise: Fly Smarter. Travel Sustainably.</title>
+<meta id="meta-description" name="description" content="FlyWise is a behavioral intelligence platform helping passengers make smarter, more sustainable travel decisions." />
+<meta property="og:title" content="FlyWise: Behavioral Intelligence for Air Travel" />
+<meta property="og:description" content="A research survey into passenger decision-making before, during and after flights." />
+<meta name="theme-color" content="#2A3FA0" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind (CDN / Play) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#101B42' },
+          blue: { DEFAULT: '#2A3FA0' },
+          violet: { DEFAULT: '#5B3DE0' },
+        },
+        borderRadius: { 'xl2': '18px', 'xl3': '28px' }
+      }
+    }
+  }
+</script>
+
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-white text-[--ink-900]">
+
+<!-- ============================================================= -->
+<!-- NAV                                                            -->
+<!-- ============================================================= -->
+<header id="site-nav" class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5" data-nav="home">
+      <img src="assets/img/logo.png" alt="FlyWise" class="h-8 w-auto" />
+      <span class="font-display font-extrabold text-xl tracking-tight">FlyWise</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[--ink-700]">
+      <a href="#survey-intro" class="btn-ghost" data-i18n="nav.survey"></a>
+      <a href="#problem" class="btn-ghost" data-i18n="nav.problem"></a>
+      <a href="#how" class="btn-ghost" data-i18n="nav.how"></a>
+      <a href="#why" class="btn-ghost" data-i18n="nav.why"></a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language switch">
+        <span class="lang-pill" id="lang-pill"></span>
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="ar">AR</button>
+      </div>
+      <button type="button" id="nav-cta-btn" class="btn btn-primary hidden sm:inline-flex text-sm" data-i18n="nav.cta"></button>
+      <button id="mobile-toggle" class="md:hidden p-2 rounded-full hover:bg-black/5" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav" class="md:hidden absolute inset-x-0 top-20 mx-4 glass rounded-xl2 p-5 flex flex-col gap-4 text-sm font-medium">
+    <a href="#survey-intro" data-i18n="nav.survey"></a>
+    <a href="#problem" data-i18n="nav.problem"></a>
+    <a href="#how" data-i18n="nav.how"></a>
+    <a href="#why" data-i18n="nav.why"></a>
+    <button type="button" id="mobile-cta-btn" class="btn btn-primary justify-center" data-i18n="nav.cta"></button>
+  </div>
+</header>
+
+<!-- Hidden shared gradient definition, reused by the success icon on the thank-you view -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101B42"/><stop offset="0.55" stop-color="#2A3FA0"/><stop offset="1" stop-color="#6D42D6"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ============================================================= -->
+<!-- MAIN VIEW: LANDING                                             -->
+<!-- ============================================================= -->
+<main id="view-landing" class="view active">
+
+  <!-- ---------- HERO ---------- -->
+  <section id="top" class="relative pt-40 pb-24">
+    <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-xs font-semibold tracking-wide text-[--ink-700]" data-i18n="hero.eyebrow"></span>
+        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl leading-[1.12] font-extrabold">
+          <span data-i18n="hero.title_line1"></span>
+          <span data-i18n="hero.title_line2"></span>
+          <span class="text-gradient" data-i18n="hero.title_line3"></span>
+        </h1>
+        <p class="mt-7 text-lg text-[--ink-500] max-w-2xl mx-auto leading-relaxed" data-i18n="hero.subtitle"></p>
+        <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <button type="button" id="hero-cta-btn" class="btn btn-primary" data-i18n="hero.cta_primary"></button>
+          <a href="#problem" class="btn btn-secondary" data-i18n="hero.cta_secondary"></a>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 mt-16 grid grid-cols-3 gap-4 max-w-xl mx-auto">
+        <div class="card glass rounded-xl2 py-6 px-3 text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold font-display text-gradient" data-i18n="hero.stat1_value"></div>
+          <div class="text-xs text-[--ink-500] mt-1.5" data-i18n="hero.stat1_label"></div>
+        </div>
+        <div class="card glass rounded-xl2 py-6 px-3 text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold font-display text-gradient" data-i18n="hero.stat2_value"></div>
+          <div class="text-xs text-[--ink-500] mt-1.5" data-i18n="hero.stat2_label"></div>
+        </div>
+        <div class="card glass rounded-xl2 py-6 px-3 text-center">
+          <div class="text-2xl sm:text-3xl font-extrabold font-display text-gradient" data-i18n="hero.stat3_value"></div>
+          <div class="text-xs text-[--ink-500] mt-1.5" data-i18n="hero.stat3_label"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- SURVEY INTRO (moved to top; distinct two-column layout) ---------- -->
+  <section id="survey-intro" class="py-24 border-y border-black/5 bg-[--surface]">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-xs font-semibold tracking-wide text-[--ink-700]" data-i18n="surveyIntro.eyebrow"></span>
+        <h2 class="mt-5 text-3xl sm:text-4xl font-extrabold leading-tight" data-i18n="surveyIntro.title"></h2>
+        <p class="mt-5 text-[--ink-500] leading-relaxed" data-i18n="surveyIntro.intro"></p>
+
+        <ul class="mt-7 grid sm:grid-cols-2 gap-4 text-sm">
+          <li class="flex items-start gap-2.5">
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[--ink-700]" data-i18n="surveyIntro.point1"></span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[--ink-700]" data-i18n="surveyIntro.point2"></span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[--ink-700]" data-i18n="surveyIntro.point3"></span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-[--ink-700]" data-i18n="surveyIntro.point4"></span>
+          </li>
+        </ul>
+
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <button type="button" id="start-survey-btn" class="btn btn-primary text-base px-9 py-4" data-i18n="surveyIntro.cta"></button>
+        </div>
+        <p class="mt-5 text-xs text-[--ink-300] max-w-md" data-i18n="surveyIntro.disclaimer"></p>
+      </div>
+
+      <!-- Live preview of what the survey actually looks like, kept visually distinct
+           from the plain stat/icon cards used elsewhere on the page. -->
+      <div class="reveal reveal-delay-2">
+        <div class="card glass rounded-xl3 p-6 sm:p-7 mx-auto max-w-md">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-semibold text-[--ink-500]" data-i18n="survey.title"></span>
+            <span class="text-xs font-semibold text-[--ink-500]" data-i18n="surveyIntro.preview_badge"></span>
+          </div>
+          <div class="h-1.5 rounded-full bg-[--ink-100] overflow-hidden mb-6">
+            <div class="h-full rounded-full" style="width: 24%; background: var(--gradient-brand);"></div>
+          </div>
+          <div class="text-xs font-bold tracking-widest uppercase text-violet mb-2" data-i18n="survey.sections.s1"></div>
+          <div class="font-bold text-lg mb-5" data-i18n="survey.q2.title"></div>
+          <div class="grid gap-2.5">
+            <div class="option-card selected flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q2.options.0"></span></div>
+            <div class="option-card flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q2.options.1"></span></div>
+            <div class="option-card flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q2.options.2"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PROBLEM ---------- -->
+  <section id="problem" class="py-28">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-violet" data-i18n="problem.eyebrow"></span>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="problem.title"></h2>
+        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="problem.subtitle"></p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card glass p-7 reveal reveal-delay-1">
+          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat1_value"></div>
+          <div class="mt-2 font-semibold" data-i18n="problem.stat1_label"></div>
+          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat1_desc"></div>
+        </div>
+        <div class="card glass p-7 reveal reveal-delay-2">
+          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat2_value"></div>
+          <div class="mt-2 font-semibold" data-i18n="problem.stat2_label"></div>
+          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat2_desc"></div>
+        </div>
+        <div class="card glass p-7 reveal reveal-delay-3">
+          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat3_value"></div>
+          <div class="mt-2 font-semibold" data-i18n="problem.stat3_label"></div>
+          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat3_desc"></div>
+        </div>
+        <div class="card glass p-7 reveal reveal-delay-4">
+          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat4_value"></div>
+          <div class="mt-2 font-semibold" data-i18n="problem.stat4_label"></div>
+          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat4_desc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- HOW IT WORKS ---------- -->
+  <section id="how" class="py-28">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-violet" data-i18n="how.eyebrow"></span>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="how.title"></h2>
+        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="how.subtitle"></p>
+      </div>
+
+      <div class="timeline-track mt-20 grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-4">
+        <div class="timeline-line hidden md:block"></div>
+        <div class="timeline-step reveal reveal-delay-1 relative flex md:flex-col gap-4 md:gap-0 items-start md:items-start">
+          <div class="timeline-node md:mb-6"></div>
+          <div>
+            <h3 class="font-bold text-lg" data-i18n="how.step1_title"></h3>
+            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step1_desc"></p>
+          </div>
+        </div>
+        <div class="timeline-step reveal reveal-delay-2 relative flex md:flex-col gap-4 md:gap-0 items-start">
+          <div class="timeline-node md:mb-6"></div>
+          <div>
+            <h3 class="font-bold text-lg" data-i18n="how.step2_title"></h3>
+            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step2_desc"></p>
+          </div>
+        </div>
+        <div class="timeline-step reveal reveal-delay-3 relative flex md:flex-col gap-4 md:gap-0 items-start">
+          <div class="timeline-node md:mb-6"></div>
+          <div>
+            <h3 class="font-bold text-lg" data-i18n="how.step3_title"></h3>
+            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step3_desc"></p>
+          </div>
+        </div>
+        <div class="timeline-step reveal reveal-delay-4 relative flex md:flex-col gap-4 md:gap-0 items-start">
+          <div class="timeline-node md:mb-6"></div>
+          <div>
+            <h3 class="font-bold text-lg" data-i18n="how.step4_title"></h3>
+            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step4_desc"></p>
+          </div>
+        </div>
+        <div class="timeline-step reveal reveal-delay-5 relative flex md:flex-col gap-4 md:gap-0 items-start">
+          <div class="timeline-node md:mb-6"></div>
+          <div>
+            <h3 class="font-bold text-lg" data-i18n="how.step5_title"></h3>
+            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step5_desc"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- WHY THIS MATTERS ---------- -->
+  <section id="why" class="py-28" style="background: var(--gradient-soft);">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl reveal">
+        <span class="text-xs font-bold tracking-widest uppercase text-violet" data-i18n="why.eyebrow"></span>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="why.title"></h2>
+        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="why.subtitle"></p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card glass p-8 reveal reveal-delay-1">
+          <div class="icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a3 3 0 006 0V3M9 10v11M17 3v8a2 2 0 002 2 2 2 0 002-2V3M19 13v8"/></svg>
+          </div>
+          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card1_title"></h3>
+          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card1_desc"></p>
+        </div>
+        <div class="card glass p-8 reveal reveal-delay-2">
+          <div class="icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2M4 13h16"/></svg>
+          </div>
+          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card2_title"></h3>
+          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card2_desc"></p>
+        </div>
+        <div class="card glass p-8 reveal reveal-delay-3">
+          <div class="icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
+          </div>
+          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card3_title"></h3>
+          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card3_desc"></p>
+        </div>
+        <div class="card glass p-8 reveal reveal-delay-4">
+          <div class="icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5l5 1.5-1.5 5-5-1.5z"/></svg>
+          </div>
+          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card4_title"></h3>
+          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card4_desc"></p>
+        </div>
+        <div class="card glass p-8 reveal reveal-delay-5">
+          <div class="icon-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.2c0 .5-.15 1-.44 1.4L5.9 15.5c-1 1.5.06 3.5 1.85 3.5h8.5c1.79 0 2.85-2 1.85-3.5l-3.66-5.9A2.5 2.5 0 0114 8.2V3M8.5 14h7"/></svg>
+          </div>
+          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card5_title"></h3>
+          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card5_desc"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- FOOTER ---------- -->
+  <footer class="py-14 border-t border-black/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2.5">
+        <img src="assets/img/logo.png" alt="FlyWise" class="h-6 w-auto" />
+        <div>
+          <div class="font-display font-bold">FlyWise</div>
+          <div class="text-xs text-[--ink-500]" data-i18n="footer.tagline"></div>
+        </div>
+      </div>
+      <div class="text-xs text-[--ink-500] text-center sm:text-end">
+        <div>&copy; <span id="year"></span> FlyWise. <span data-i18n="footer.rights"></span></div>
+        <div class="mt-1" data-i18n="footer.research"></div>
+      </div>
+      <a href="admin.html" class="admin-link text-[10px] text-[--ink-300] hover:text-[--ink-500] transition" aria-hidden="true">•</a>
+    </div>
+  </footer>
+</main>
+
+<!-- ============================================================= -->
+<!-- VIEW: SURVEY                                                   -->
+<!-- ============================================================= -->
+<section id="view-survey" class="view min-h-screen pt-32 pb-20">
+  <div class="max-w-2xl mx-auto px-6">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="font-display font-bold text-lg" data-i18n="survey.title"></h2>
+      <span id="survey-autosave" class="text-xs text-[--ink-500] opacity-0 transition-opacity" data-i18n="survey.saved"></span>
+    </div>
+    <div class="flex items-center justify-between text-xs text-[--ink-500] mb-2">
+      <span id="survey-step-label"></span>
+      <span id="survey-time-label"></span>
+    </div>
+    <div id="survey-progress-track" class="h-2 rounded-full overflow-hidden">
+      <div id="survey-progress-fill" class="h-full rounded-full" style="width: 6.66%"></div>
+    </div>
+
+    <form id="survey-form" class="mt-10 glass rounded-xl3 p-8 sm:p-10">
+      <!-- Steps are generated by app.js from translations to guarantee EN/AR parity -->
+      <div id="survey-steps"></div>
+
+      <div class="mt-10 flex items-center justify-between gap-4">
+        <button type="button" id="survey-back" class="btn btn-secondary" data-i18n="survey.back"></button>
+        <button type="button" id="survey-next" class="btn btn-primary ms-auto" data-i18n="survey.next"></button>
+        <button type="submit" id="survey-submit" class="btn btn-primary ms-auto hidden" data-i18n="survey.submit"></button>
+      </div>
+      <p id="survey-error" class="mt-4 text-sm text-red-500 font-medium hidden" data-i18n="survey.required"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- VIEW: THANK YOU                                                -->
+<!-- ============================================================= -->
+<section id="view-thanks" class="view min-h-screen flex items-center justify-center pt-32 pb-20">
+  <div class="max-w-md mx-auto px-6 text-center">
+    <svg width="110" height="110" viewBox="0 0 120 120" class="mx-auto">
+      <circle class="success-circle" cx="60" cy="60" r="48" fill="none" stroke="url(#brandGrad)" stroke-width="5" stroke-linecap="round"/>
+      <path class="success-check" d="M38 61L52 75L84 43" fill="none" stroke="url(#brandGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h2 class="mt-8 text-3xl font-extrabold font-display" data-i18n="thanks.title"></h2>
+    <p class="mt-4 text-[--ink-500] leading-relaxed" data-i18n="thanks.subtitle"></p>
+    <div class="mt-6 glass rounded-xl2 py-4 px-6 inline-block">
+      <span class="text-xs text-[--ink-500]" data-i18n="thanks.response_id"></span>
+      <div id="thanks-response-id" class="font-mono font-semibold mt-1 text-sm"></div>
+    </div>
+    <p id="thanks-save-status" class="mt-3 text-xs text-[--ink-300]"></p>
+    <p class="mt-6 text-xs text-[--ink-300]" data-i18n="thanks.note"></p>
+    <a href="#top" id="thanks-home-btn" class="btn btn-primary mt-9" data-i18n="thanks.back_home"></a>
+  </div>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/translations.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

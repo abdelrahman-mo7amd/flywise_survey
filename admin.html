@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>FlyWise: Research Admin</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  body { font-family: "Inter", sans-serif; background: #F8F7FC; }
+  .font-display { font-family: "Plus Jakarta Sans", sans-serif; }
+  .kpi-card { border-radius: 18px; }
+  table th, table td { white-space: nowrap; }
+  ::-webkit-scrollbar { height: 8px; width: 8px; }
+  ::-webkit-scrollbar-thumb { background: #ddd8ee; border-radius: 8px; }
+</style>
+</head>
+<body class="text-[--ink-900]">
+
+<!-- ============================================================= -->
+<!-- LOGIN GATE                                                     -->
+<!-- Shown until an authenticated Firebase Auth session exists.     -->
+<!-- Prevents anyone who finds this URL from reading response data. -->
+<!-- ============================================================= -->
+<div id="admin-login" class="min-h-screen flex items-center justify-center px-6">
+  <div class="w-full max-w-sm">
+    <div class="flex items-center gap-2.5 justify-center mb-8">
+      <img src="assets/img/logo.png" alt="FlyWise" class="h-7 w-auto" />
+      <span class="font-display font-bold text-lg">FlyWise <span class="text-[--ink-500] font-medium">/ Admin</span></span>
+    </div>
+    <form id="admin-login-form" class="kpi-card bg-white p-7 shadow-sm">
+      <h1 class="font-display font-bold text-lg mb-1">Research Admin sign in</h1>
+      <p class="text-xs text-[--ink-500] mb-6">Restricted to the research team. Sign in with your admin account.</p>
+      <label class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Email</label>
+      <input id="admin-email" type="email" autocomplete="username" required
+        class="mt-1.5 mb-4 w-full text-sm px-3 py-2.5 rounded-lg border border-black/10 focus:outline-none focus:border-[--indigo]" />
+      <label class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Password</label>
+      <input id="admin-password" type="password" autocomplete="current-password" required
+        class="mt-1.5 mb-2 w-full text-sm px-3 py-2.5 rounded-lg border border-black/10 focus:outline-none focus:border-[--indigo]" />
+      <p id="admin-login-error" class="text-xs text-red-500 font-medium mb-2 hidden"></p>
+      <button type="submit" id="admin-login-btn" class="btn btn-primary w-full justify-center mt-4">Sign in</button>
+      <p id="admin-login-note" class="text-xs text-[--ink-500] mt-5 leading-relaxed"></p>
+    </form>
+    <a href="index.html" class="block text-center text-sm text-[--ink-500] hover:text-[--indigo] mt-6">← Back to site</a>
+  </div>
+</div>
+
+<div id="admin-app" class="min-h-screen hidden">
+  <!-- Top bar -->
+  <header class="border-b border-black/5 bg-white/80 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <img src="assets/img/logo.png" alt="FlyWise" class="h-6 w-auto" />
+        <span class="font-display font-bold">FlyWise <span class="text-[--ink-500] font-medium">/ Research Admin</span></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="data-source-badge" class="text-xs px-3 py-1 rounded-full bg-black/5 text-[--ink-500] font-medium">Loading…</span>
+        <span id="admin-user-email" class="text-xs text-[--ink-500]"></span>
+        <button id="admin-signout-btn" type="button" class="text-sm font-medium text-[--ink-500] hover:text-[--indigo]">Sign out</button>
+        <a href="index.html" class="text-sm font-medium text-[--ink-500] hover:text-[--indigo]">← Back to site</a>
+      </div>
+    </div>
+  </header>
+  <div id="data-source-note" class="max-w-7xl mx-auto px-6 pt-3 text-xs text-[--ink-500] hidden"></div>
+
+  <main class="max-w-7xl mx-auto px-6 py-10">
+    <!-- KPI row -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <div class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Total Responses</div>
+        <div id="kpi-total" class="mt-2 text-3xl font-extrabold font-display">0</div>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <div class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Avg. Packing Confidence</div>
+        <div id="kpi-confidence" class="mt-2 text-3xl font-extrabold font-display">N/A</div>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <div class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Carbon Offset Awareness</div>
+        <div id="kpi-offset" class="mt-2 text-3xl font-extrabold font-display">N/A</div>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <div class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Rewards Interest</div>
+        <div id="kpi-rewards" class="mt-2 text-3xl font-extrabold font-display">N/A</div>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <div class="text-xs font-semibold text-[--ink-500] uppercase tracking-wide">Reach Baggage Limit</div>
+        <div id="kpi-baggage" class="mt-2 text-3xl font-extrabold font-display">N/A</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="mt-8 grid lg:grid-cols-2 gap-6">
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <h3 class="font-bold mb-4">Travel Frequency</h3>
+        <canvas id="chart-frequency" height="180"></canvas>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <h3 class="font-bold mb-4">Packing Habits (never-worn clothes)</h3>
+        <canvas id="chart-packing" height="180"></canvas>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <h3 class="font-bold mb-4">Carbon Offset Awareness</h3>
+        <canvas id="chart-offset" height="180"></canvas>
+      </div>
+      <div class="kpi-card bg-white p-6 shadow-sm">
+        <h3 class="font-bold mb-4">Rewards Interest (1-5 scale)</h3>
+        <canvas id="chart-rewards" height="180"></canvas>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="mt-8 kpi-card bg-white p-6 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+        <h3 class="font-bold">Responses</h3>
+        <div class="flex flex-wrap items-center gap-3">
+          <input id="search-input" type="text" placeholder="Search responses…" class="text-sm px-3 py-2 rounded-lg border border-black/10 w-56 focus:outline-none focus:border-[--indigo]" />
+          <select id="filter-lang" class="text-sm px-3 py-2 rounded-lg border border-black/10 focus:outline-none">
+            <option value="">All languages</option>
+            <option value="en">English</option>
+            <option value="ar">Arabic</option>
+          </select>
+          <select id="filter-purpose" class="text-sm px-3 py-2 rounded-lg border border-black/10 focus:outline-none">
+            <option value="">All purposes</option>
+          </select>
+          <button id="btn-export-csv" class="btn btn-secondary text-sm py-2 px-4">Export CSV</button>
+          <button id="btn-export-json" class="btn btn-secondary text-sm py-2 px-4">Export JSON</button>
+          <button id="btn-export-xlsx" class="btn btn-primary text-sm py-2 px-4">Export Excel</button>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-[--ink-500] border-b border-black/5">
+              <th class="py-2 pr-4">Response ID</th>
+              <th class="py-2 pr-4">Date</th>
+              <th class="py-2 pr-4">Lang</th>
+              <th class="py-2 pr-4">Travel Freq.</th>
+              <th class="py-2 pr-4">Purpose</th>
+              <th class="py-2 pr-4">Packing Confidence</th>
+              <th class="py-2 pr-4">Offset Aware</th>
+              <th class="py-2 pr-4">Worry (open text)</th>
+              <th class="py-2 pr-4">Source</th>
+            </tr>
+          </thead>
+          <tbody id="responses-tbody"></tbody>
+        </table>
+        <div id="empty-state" class="hidden text-center py-14 text-[--ink-500] text-sm">
+          No responses yet. Submit a survey response from the live site to see it appear here.
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>
