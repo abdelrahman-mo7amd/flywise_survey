@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FlyWise: Fly Smarter. Travel Sustainably.</title>
-<meta id="meta-description" name="description" content="FlyWise is a behavioral intelligence platform helping passengers make smarter, more sustainable travel decisions." />
-<meta property="og:title" content="FlyWise: Behavioral Intelligence for Air Travel" />
-<meta property="og:description" content="A research survey into passenger decision-making before, during and after flights." />
-<meta name="theme-color" content="#2A3FA0" />
+<title>FlyWise</title>
+<meta id="meta-description" name="description" content="FlyWise is an aviation technology startup building the future of sustainable travel." />
+<meta property="og:title" content="FlyWise" />
+<meta property="og:description" content="Making Every Journey Smarter." />
+<meta name="theme-color" content="#5E2BFF" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&family=Alexandria:wght@400;500;600;700;800&family=Cairo:wght@500;600;700&display=swap" rel="stylesheet">
 
 <!-- Tailwind (CDN / Play) -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -21,11 +21,13 @@
     theme: {
       extend: {
         colors: {
-          navy: { DEFAULT: '#101B42' },
-          blue: { DEFAULT: '#2A3FA0' },
-          violet: { DEFAULT: '#5B3DE0' },
+          indigo: { DEFAULT: '#5E2BFF' },
+          violet: { DEFAULT: '#C04CFD' },
+          pink: { DEFAULT: '#FC6DAB' },
+          cream: { DEFAULT: '#F7F6C5' },
+          beige: { DEFAULT: '#F3FAE1' },
         },
-        borderRadius: { 'xl2': '18px', 'xl3': '28px' }
+        borderRadius: { 'xl2': '20px', 'xl3': '30px' }
       }
     }
   }
@@ -40,122 +42,130 @@
 <!-- ============================================================= -->
 <header id="site-nav" class="fixed top-0 inset-x-0 z-50">
   <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2.5" data-nav="home">
+    <a href="#" data-goto="" class="flex items-center gap-2.5">
       <img src="assets/img/logo.png" alt="FlyWise" class="h-8 w-auto" />
       <span class="font-display font-extrabold text-xl tracking-tight">FlyWise</span>
     </a>
 
     <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[--ink-700]">
-      <a href="#survey-intro" class="btn-ghost" data-i18n="nav.survey"></a>
-      <a href="#problem" class="btn-ghost" data-i18n="nav.problem"></a>
-      <a href="#how" class="btn-ghost" data-i18n="nav.how"></a>
+      <a href="#survey" data-goto="survey" class="btn-ghost" data-i18n="nav.survey"></a>
+      <a href="#about" class="btn-ghost" data-i18n="nav.about"></a>
       <a href="#why" class="btn-ghost" data-i18n="nav.why"></a>
+      <a href="#team" class="btn-ghost" data-i18n="nav.team"></a>
+      <a href="#contact" class="btn-ghost" data-i18n="nav.contact"></a>
     </nav>
 
     <div class="flex items-center gap-3">
       <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language switch">
         <span class="lang-pill" id="lang-pill"></span>
-        <button type="button" data-lang="en" class="active">EN</button>
-        <button type="button" data-lang="ar">AR</button>
+        <button type="button" data-lang="ar" class="active">AR</button>
+        <button type="button" data-lang="en">EN</button>
       </div>
-      <button type="button" id="nav-cta-btn" class="btn btn-primary hidden sm:inline-flex text-sm" data-i18n="nav.cta"></button>
+      <a href="#login" data-goto="login" class="btn btn-secondary hidden sm:inline-flex text-sm" data-guest-only data-i18n="nav.login"></a>
+      <a href="#survey" data-goto="survey" class="btn btn-primary hidden sm:inline-flex text-sm" data-i18n="nav.cta"></a>
+      <a href="#coming-soon" data-goto="coming-soon" class="btn btn-primary hidden sm:inline-flex text-sm hidden" data-auth-only data-i18n="comingSoon.explore_btn"></a>
       <button id="mobile-toggle" class="md:hidden p-2 rounded-full hover:bg-black/5" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </div>
   </div>
   <div id="mobile-nav" class="md:hidden absolute inset-x-0 top-20 mx-4 glass rounded-xl2 p-5 flex flex-col gap-4 text-sm font-medium">
-    <a href="#survey-intro" data-i18n="nav.survey"></a>
-    <a href="#problem" data-i18n="nav.problem"></a>
-    <a href="#how" data-i18n="nav.how"></a>
+    <a href="#survey" data-goto="survey" data-i18n="nav.survey"></a>
+    <a href="#about" data-i18n="nav.about"></a>
     <a href="#why" data-i18n="nav.why"></a>
-    <button type="button" id="mobile-cta-btn" class="btn btn-primary justify-center" data-i18n="nav.cta"></button>
+    <a href="#team" data-i18n="nav.team"></a>
+    <a href="#contact" data-i18n="nav.contact"></a>
+    <a href="#login" data-goto="login" class="btn btn-secondary justify-center" data-guest-only data-i18n="nav.login"></a>
+    <a href="#survey" data-goto="survey" class="btn btn-primary justify-center" data-i18n="nav.cta"></a>
+    <a href="#coming-soon" data-goto="coming-soon" class="btn btn-primary justify-center hidden" data-auth-only data-i18n="comingSoon.explore_btn"></a>
   </div>
 </header>
 
-<!-- Hidden shared gradient definition, reused by the success icon on the thank-you view -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#101B42"/><stop offset="0.55" stop-color="#2A3FA0"/><stop offset="1" stop-color="#6D42D6"/>
-    </linearGradient>
-  </defs>
-</svg>
-
 <!-- ============================================================= -->
-<!-- MAIN VIEW: LANDING                                             -->
+<!-- VIEW: LANDING                                                  -->
 <!-- ============================================================= -->
 <main id="view-landing" class="view active">
 
   <!-- ---------- HERO ---------- -->
-  <section id="top" class="relative pt-40 pb-24">
-    <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center">
+  <section id="top" class="relative pt-40 pb-28 overflow-hidden">
+    <div class="blob w-[420px] h-[420px] -top-24 -start-24" style="background: var(--indigo);"></div>
+    <div class="blob w-[380px] h-[380px] top-40 -end-32" style="background: var(--pink);"></div>
+    <div class="max-w-5xl mx-auto px-6 lg:px-10 text-center relative z-10">
       <div class="reveal">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-xs font-semibold tracking-wide text-[--ink-700]" data-i18n="hero.eyebrow"></span>
-        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl leading-[1.12] font-extrabold">
-          <span data-i18n="hero.title_line1"></span>
-          <span data-i18n="hero.title_line2"></span>
-          <span class="text-gradient" data-i18n="hero.title_line3"></span>
+        <div class="flex items-center justify-center gap-2 flex-wrap">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-xs font-semibold font-eyebrow tracking-wide text-[--ink-700]" data-i18n="hero.eyebrow"></span>
+        </div>
+        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl leading-[1.15] font-extrabold max-w-4xl mx-auto">
+          <span data-i18n="hero.title"></span>
         </h1>
         <p class="mt-7 text-lg text-[--ink-500] max-w-2xl mx-auto leading-relaxed" data-i18n="hero.subtitle"></p>
         <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <button type="button" id="hero-cta-btn" class="btn btn-primary" data-i18n="hero.cta_primary"></button>
-          <a href="#problem" class="btn btn-secondary" data-i18n="hero.cta_secondary"></a>
+          <a href="#survey" data-goto="survey" class="btn btn-primary" data-i18n="hero.cta_survey"></a>
+          <a href="#signup" data-goto="signup" class="btn btn-secondary hidden sm:inline-flex" data-guest-only data-i18n="hero.cta_primary"></a>
+          <a href="#coming-soon" data-goto="coming-soon" class="btn btn-primary hidden" data-auth-only data-i18n="comingSoon.explore_btn"></a>
         </div>
       </div>
 
-      <div class="reveal reveal-delay-2 mt-16 grid grid-cols-3 gap-4 max-w-xl mx-auto">
-        <div class="card glass rounded-xl2 py-6 px-3 text-center">
-          <div class="text-2xl sm:text-3xl font-extrabold font-display text-gradient" data-i18n="hero.stat1_value"></div>
-          <div class="text-xs text-[--ink-500] mt-1.5" data-i18n="hero.stat1_label"></div>
-        </div>
-        <div class="card glass rounded-xl2 py-6 px-3 text-center">
-          <div class="text-2xl sm:text-3xl font-extrabold font-display text-gradient" data-i18n="hero.stat2_value"></div>
-          <div class="text-xs text-[--ink-500] mt-1.5" data-i18n="hero.stat2_label"></div>
-        </div>
-        <div class="card glass rounded-xl2 py-6 px-3 text-center">
-          <div class="text-2xl sm:text-3xl font-extrabold font-display text-gradient" data-i18n="hero.stat3_value"></div>
-          <div class="text-xs text-[--ink-500] mt-1.5" data-i18n="hero.stat3_label"></div>
+      <!-- Signature: animated flight-route visualization -->
+      <div class="reveal reveal-delay-2 mt-16 route-wrap max-w-3xl mx-auto">
+        <svg viewBox="0 0 700 220" class="w-full h-auto" aria-hidden="true">
+          <path id="flightPath" d="M60,170 C 200,20 500,20 640,170" fill="none" stroke="url(#routeGrad)" stroke-width="2.5" class="route-path" stroke-linecap="round"/>
+          <circle cx="60" cy="170" r="7" fill="#5E2BFF" class="route-dot origin"/>
+          <circle cx="640" cy="170" r="7" fill="#FC6DAB" class="route-dot dest"/>
+          <g>
+            <path d="M-9,-4 L9,0 L-9,4 L-5,0 Z" fill="#5E2BFF"/>
+            <animateMotion dur="5.5s" repeatCount="indefinite" rotate="auto" path="M60,170 C 200,20 500,20 640,170"/>
+          </g>
+          <defs>
+            <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#5E2BFF"/>
+              <stop offset="0.55" stop-color="#C04CFD"/>
+              <stop offset="1" stop-color="#FC6DAB"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="flex items-center justify-center gap-3 mt-2 text-xs text-[--ink-500] font-medium">
+          <span data-i18n="hero.badge1"></span>
+          <span class="w-1 h-1 rounded-full bg-[--ink-300]"></span>
+          <span data-i18n="hero.badge2"></span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ---------- SURVEY INTRO (moved to top; distinct two-column layout) ---------- -->
-  <section id="survey-intro" class="py-24 border-y border-black/5 bg-[--surface]">
+  <!-- ---------- SURVEY INTRO ---------- -->
+  <section id="survey" class="py-24 border-y border-black/5 bg-[--surface]">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-14 items-center">
       <div class="reveal">
-        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-xs font-semibold tracking-wide text-[--ink-700]" data-i18n="surveyIntro.eyebrow"></span>
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 text-xs font-semibold font-eyebrow tracking-wide text-[--ink-700]" data-i18n="surveyIntro.eyebrow"></span>
         <h2 class="mt-5 text-3xl sm:text-4xl font-extrabold leading-tight" data-i18n="surveyIntro.title"></h2>
         <p class="mt-5 text-[--ink-500] leading-relaxed" data-i18n="surveyIntro.intro"></p>
 
         <ul class="mt-7 grid sm:grid-cols-2 gap-4 text-sm">
           <li class="flex items-start gap-2.5">
-            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--indigo)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="text-[--ink-700]" data-i18n="surveyIntro.point1"></span>
           </li>
           <li class="flex items-start gap-2.5">
-            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--indigo)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="text-[--ink-700]" data-i18n="surveyIntro.point2"></span>
           </li>
           <li class="flex items-start gap-2.5">
-            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--indigo)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="text-[--ink-700]" data-i18n="surveyIntro.point3"></span>
           </li>
           <li class="flex items-start gap-2.5">
-            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--blue)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="var(--indigo)"/><path d="M6 10.2l2.6 2.6L14.5 7" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span class="text-[--ink-700]" data-i18n="surveyIntro.point4"></span>
           </li>
         </ul>
 
         <div class="mt-9 flex flex-wrap items-center gap-4">
-          <button type="button" id="start-survey-btn" class="btn btn-primary text-base px-9 py-4" data-i18n="surveyIntro.cta"></button>
+          <a href="#survey" data-goto="survey" id="start-survey-btn" class="btn btn-primary text-base px-9 py-4" data-i18n="surveyIntro.cta"></a>
         </div>
         <p class="mt-5 text-xs text-[--ink-300] max-w-md" data-i18n="surveyIntro.disclaimer"></p>
       </div>
 
-      <!-- Live preview of what the survey actually looks like, kept visually distinct
-           from the plain stat/icon cards used elsewhere on the page. -->
       <div class="reveal reveal-delay-2">
         <div class="card glass rounded-xl3 p-6 sm:p-7 mx-auto max-w-md">
           <div class="flex items-center justify-between mb-4">
@@ -163,155 +173,232 @@
             <span class="text-xs font-semibold text-[--ink-500]" data-i18n="surveyIntro.preview_badge"></span>
           </div>
           <div class="h-1.5 rounded-full bg-[--ink-100] overflow-hidden mb-6">
-            <div class="h-full rounded-full" style="width: 24%; background: var(--gradient-brand);"></div>
+            <div class="h-full rounded-full" style="width: 30%; background: var(--gradient-brand);"></div>
           </div>
-          <div class="text-xs font-bold tracking-widest uppercase text-violet mb-2" data-i18n="survey.sections.s1"></div>
-          <div class="font-bold text-lg mb-5" data-i18n="survey.q2.title"></div>
+          <div class="text-xs font-bold tracking-widest uppercase text-violet mb-2" data-i18n="survey.sections.s2"></div>
+          <div class="font-bold text-lg mb-5" data-i18n="survey.q3.title"></div>
           <div class="grid gap-2.5">
-            <div class="option-card selected flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q2.options.0"></span></div>
-            <div class="option-card flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q2.options.1"></span></div>
-            <div class="option-card flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q2.options.2"></span></div>
+            <div class="option-card flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q3.options.1"></span></div>
+            <div class="option-card selected flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q3.options.2"></span></div>
+            <div class="option-card flex items-center gap-3 px-4 py-3"><span class="option-dot"></span><span class="font-medium text-sm" data-i18n="survey.q3.options.3"></span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ---------- PROBLEM ---------- -->
-  <section id="problem" class="py-28">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10">
-      <div class="max-w-2xl reveal">
-        <span class="text-xs font-bold tracking-widest uppercase text-violet" data-i18n="problem.eyebrow"></span>
-        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="problem.title"></h2>
-        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="problem.subtitle"></p>
+  <!-- ---------- ABOUT ---------- -->
+  <section id="about" class="py-24 border-y border-black/5 bg-[--surface]">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center max-w-3xl mx-auto">
+        <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--indigo]" data-i18n="about.eyebrow"></span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold" data-i18n="about.title"></h2>
       </div>
-
-      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="card glass p-7 reveal reveal-delay-1">
-          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat1_value"></div>
-          <div class="mt-2 font-semibold" data-i18n="problem.stat1_label"></div>
-          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat1_desc"></div>
+      <div class="mt-12 grid sm:grid-cols-3 gap-6">
+        <div class="card glass p-8 reveal reveal-delay-1">
+          <p class="text-[--ink-700] leading-relaxed" data-i18n="about.p1"></p>
         </div>
-        <div class="card glass p-7 reveal reveal-delay-2">
-          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat2_value"></div>
-          <div class="mt-2 font-semibold" data-i18n="problem.stat2_label"></div>
-          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat2_desc"></div>
+        <div class="card glass p-8 reveal reveal-delay-2">
+          <p class="text-[--ink-700] leading-relaxed" data-i18n="about.p2"></p>
         </div>
-        <div class="card glass p-7 reveal reveal-delay-3">
-          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat3_value"></div>
-          <div class="mt-2 font-semibold" data-i18n="problem.stat3_label"></div>
-          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat3_desc"></div>
-        </div>
-        <div class="card glass p-7 reveal reveal-delay-4">
-          <div class="text-4xl font-extrabold font-display text-gradient" data-i18n="problem.stat4_value"></div>
-          <div class="mt-2 font-semibold" data-i18n="problem.stat4_label"></div>
-          <div class="mt-1 text-sm text-[--ink-500]" data-i18n="problem.stat4_desc"></div>
+        <div class="card glass p-8 reveal reveal-delay-3">
+          <p class="text-[--ink-700] leading-relaxed" data-i18n="about.p3"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ---------- HOW IT WORKS ---------- -->
-  <section id="how" class="py-28">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10">
-      <div class="max-w-2xl reveal">
-        <span class="text-xs font-bold tracking-widest uppercase text-violet" data-i18n="how.eyebrow"></span>
-        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="how.title"></h2>
-        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="how.subtitle"></p>
+  <!-- ---------- MISSION & VISION ---------- -->
+  <section id="mission" class="py-24">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="reveal text-center">
+        <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--indigo]" data-i18n="mission.eyebrow"></span>
       </div>
-
-      <div class="timeline-track mt-20 grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-4">
-        <div class="timeline-line hidden md:block"></div>
-        <div class="timeline-step reveal reveal-delay-1 relative flex md:flex-col gap-4 md:gap-0 items-start md:items-start">
-          <div class="timeline-node md:mb-6"></div>
-          <div>
-            <h3 class="font-bold text-lg" data-i18n="how.step1_title"></h3>
-            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step1_desc"></p>
-          </div>
+      <div class="mt-10 grid sm:grid-cols-2 gap-6">
+        <div class="card p-10 reveal reveal-delay-1 rounded-xl3" style="background: var(--gradient-brand); color: white;">
+          <span class="text-xs font-bold font-eyebrow tracking-widest uppercase opacity-80" data-i18n="mission.mission_label"></span>
+          <p class="mt-4 text-xl sm:text-2xl font-display font-semibold leading-snug" data-i18n="mission.mission_text"></p>
         </div>
-        <div class="timeline-step reveal reveal-delay-2 relative flex md:flex-col gap-4 md:gap-0 items-start">
-          <div class="timeline-node md:mb-6"></div>
-          <div>
-            <h3 class="font-bold text-lg" data-i18n="how.step2_title"></h3>
-            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step2_desc"></p>
-          </div>
-        </div>
-        <div class="timeline-step reveal reveal-delay-3 relative flex md:flex-col gap-4 md:gap-0 items-start">
-          <div class="timeline-node md:mb-6"></div>
-          <div>
-            <h3 class="font-bold text-lg" data-i18n="how.step3_title"></h3>
-            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step3_desc"></p>
-          </div>
-        </div>
-        <div class="timeline-step reveal reveal-delay-4 relative flex md:flex-col gap-4 md:gap-0 items-start">
-          <div class="timeline-node md:mb-6"></div>
-          <div>
-            <h3 class="font-bold text-lg" data-i18n="how.step4_title"></h3>
-            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step4_desc"></p>
-          </div>
-        </div>
-        <div class="timeline-step reveal reveal-delay-5 relative flex md:flex-col gap-4 md:gap-0 items-start">
-          <div class="timeline-node md:mb-6"></div>
-          <div>
-            <h3 class="font-bold text-lg" data-i18n="how.step5_title"></h3>
-            <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="how.step5_desc"></p>
-          </div>
+        <div class="card p-10 reveal reveal-delay-2 rounded-xl3" style="background: var(--gradient-warm);">
+          <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--ink-700]" data-i18n="mission.vision_label"></span>
+          <p class="mt-4 text-xl sm:text-2xl font-display font-semibold leading-snug text-[--ink-900]" data-i18n="mission.vision_text"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ---------- WHY THIS MATTERS ---------- -->
+  <!-- ---------- WHY FLYWISE ---------- -->
   <section id="why" class="py-28" style="background: var(--gradient-soft);">
-    <div class="max-w-7xl mx-auto px-6 lg:px-10">
-      <div class="max-w-2xl reveal">
-        <span class="text-xs font-bold tracking-widest uppercase text-violet" data-i18n="why.eyebrow"></span>
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--violet]" data-i18n="why.eyebrow"></span>
         <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="why.title"></h2>
-        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="why.subtitle"></p>
       </div>
 
-      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="mt-14 grid sm:grid-cols-3 gap-6">
         <div class="card glass p-8 reveal reveal-delay-1">
           <div class="icon-badge">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a3 3 0 006 0V3M9 10v11M17 3v8a2 2 0 002 2 2 2 0 002-2V3M19 13v8"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg>
           </div>
           <h3 class="mt-5 font-bold text-lg" data-i18n="why.card1_title"></h3>
           <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card1_desc"></p>
         </div>
         <div class="card glass p-8 reveal reveal-delay-2">
           <div class="icon-badge">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 8V6a2 2 0 012-2h2a2 2 0 012 2v2M4 13h16"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.2c0 .5-.15 1-.44 1.4L5.9 15.5c-1 1.5.06 3.5 1.85 3.5h8.5c1.79 0 2.85-2 1.85-3.5l-3.66-5.9A2.5 2.5 0 0114 8.2V3M8.5 14h7"/></svg>
           </div>
           <h3 class="mt-5 font-bold text-lg" data-i18n="why.card2_title"></h3>
           <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card2_desc"></p>
         </div>
         <div class="card glass p-8 reveal reveal-delay-3">
           <div class="icon-badge">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
           </div>
           <h3 class="mt-5 font-bold text-lg" data-i18n="why.card3_title"></h3>
           <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card3_desc"></p>
-        </div>
-        <div class="card glass p-8 reveal reveal-delay-4">
-          <div class="icon-badge">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5l5 1.5-1.5 5-5-1.5z"/></svg>
-          </div>
-          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card4_title"></h3>
-          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card4_desc"></p>
-        </div>
-        <div class="card glass p-8 reveal reveal-delay-5">
-          <div class="icon-badge">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.2c0 .5-.15 1-.44 1.4L5.9 15.5c-1 1.5.06 3.5 1.85 3.5h8.5c1.79 0 2.85-2 1.85-3.5l-3.66-5.9A2.5 2.5 0 0114 8.2V3M8.5 14h7"/></svg>
-          </div>
-          <h3 class="mt-5 font-bold text-lg" data-i18n="why.card5_title"></h3>
-          <p class="mt-2 text-sm text-[--ink-500] leading-relaxed" data-i18n="why.card5_desc"></p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ---------- FUTURE PLATFORM PREVIEW ---------- -->
+  <section id="future" class="py-28 bg-[--surface] border-y border-black/5">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--indigo]" data-i18n="future.eyebrow"></span>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="future.title"></h2>
+        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="future.subtitle"></p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="locked-card card glass reveal reveal-delay-1 p-8 h-44 flex items-end">
+          <span class="locked-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M6 10V8a6 6 0 0112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 00-8 0v2z"/></svg>
+            <span data-i18n="future.locked"></span>
+          </span>
+          <h3 class="locked-blur font-bold text-lg" data-i18n="future.card1"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-2 p-8 h-44 flex items-end">
+          <span class="locked-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M6 10V8a6 6 0 0112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 00-8 0v2z"/></svg>
+            <span data-i18n="future.locked"></span>
+          </span>
+          <h3 class="locked-blur font-bold text-lg" data-i18n="future.card2"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-3 p-8 h-44 flex items-end">
+          <span class="locked-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M6 10V8a6 6 0 0112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 00-8 0v2z"/></svg>
+            <span data-i18n="future.locked"></span>
+          </span>
+          <h3 class="locked-blur font-bold text-lg" data-i18n="future.card3"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-4 p-8 h-44 flex items-end">
+          <span class="locked-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M6 10V8a6 6 0 0112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 00-8 0v2z"/></svg>
+            <span data-i18n="future.locked"></span>
+          </span>
+          <h3 class="locked-blur font-bold text-lg" data-i18n="future.card4"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-5 p-8 h-44 flex items-end">
+          <span class="locked-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M6 10V8a6 6 0 0112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 00-8 0v2z"/></svg>
+            <span data-i18n="future.locked"></span>
+          </span>
+          <h3 class="locked-blur font-bold text-lg" data-i18n="future.card5"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-6 p-8 h-44 flex items-end">
+          <span class="locked-badge">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="white"><path d="M6 10V8a6 6 0 0112 0v2h1a1 1 0 011 1v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9a1 1 0 011-1h1zm2 0h8V8a4 4 0 00-8 0v2z"/></svg>
+            <span data-i18n="future.locked"></span>
+          </span>
+          <h3 class="locked-blur font-bold text-lg" data-i18n="future.card6"></h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- TEAM ---------- -->
+  <section id="team" class="py-28">
+    <div class="max-w-5xl mx-auto px-6 lg:px-10">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--indigo]" data-i18n="team.eyebrow"></span>
+        <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="team.title"></h2>
+        <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="team.description"></p>
+      </div>
+
+      <div class="mt-14 grid sm:grid-cols-3 gap-6">
+        <div class="card glass p-8 text-center reveal reveal-delay-1">
+          <div class="w-20 h-20 mx-auto rounded-full overflow-hidden ring-2 ring-white/30">
+            <img
+              src="assets/img/abdelrahman.jpg"
+              alt="Abdelrahman Mohamed"
+              class="w-full h-full object-cover"
+            >
+          </div>
+
+          <h3 class="mt-5 font-bold text-lg" data-i18n="team.m1_name"></h3>
+          <div class="text-xs font-semibold text-[--indigo] mt-1" data-i18n="team.role_cofounder"></div>
+          <p class="mt-3 text-sm text-[--ink-500] leading-relaxed" data-i18n="team.m1_tags"></p>
+        </div>
+
+        <div class="card glass p-8 text-center reveal reveal-delay-2">
+          <div class="w-20 h-20 mx-auto rounded-full overflow-hidden ring-2 ring-white/30">
+            <img
+              src="assets/img/nashi.jpg"
+              alt="Ahmed"
+              class="w-full h-full object-cover"
+            >
+          </div>
+
+          <h3 class="mt-5 font-bold text-lg" data-i18n="team.m2_name"></h3>
+          <div class="text-xs font-semibold text-[--indigo] mt-1" data-i18n="team.role_cofounder"></div>
+          <p class="mt-3 text-sm text-[--ink-500] leading-relaxed" data-i18n="team.m2_tags"></p>
+        </div>
+
+        <div class="card glass p-8 text-center reveal reveal-delay-3">
+          <div class="w-20 h-20 mx-auto rounded-full overflow-hidden ring-2 ring-white/30">
+            <img
+              src="assets/img/fathy.jpg"
+              alt="Fathy Tamer"
+              class="w-full h-full object-cover"
+            >
+          </div>
+
+          <h3 class="mt-5 font-bold text-lg" data-i18n="team.m3_name"></h3>
+          <div class="text-xs font-semibold text-[--indigo] mt-1" data-i18n="team.role_cofounder"></div>
+          <p class="mt-3 text-sm text-[--ink-500] leading-relaxed" data-i18n="team.m3_tags"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CONTACT ---------- -->
+  <section id="contact" class="py-28 bg-[--surface] border-y border-black/5">
+    <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center reveal">
+      <span class="text-xs font-bold font-eyebrow tracking-widest uppercase text-[--indigo]" data-i18n="contact.eyebrow"></span>
+      <h2 class="mt-3 text-4xl sm:text-5xl font-extrabold leading-tight" data-i18n="contact.title"></h2>
+      <p class="mt-5 text-[--ink-500] text-lg leading-relaxed" data-i18n="contact.subtitle"></p>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href="mailto:hello@flywise.tech" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          hello@flywise.tech
+        </a>
+        <a href="#" class="btn btn-secondary" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 5 2.5 2.5 0 01-.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.8c0-1.38-.02-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05V21H9z"/></svg>
+        </a>
+        <a href="#" class="btn btn-secondary" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="#" class="btn btn-secondary" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 015 0c1.9-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ---------- FOOTER ---------- -->
-  <footer class="py-14 border-t border-black/5">
+  <footer class="py-14">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-2.5">
         <img src="assets/img/logo.png" alt="FlyWise" class="h-6 w-auto" />
@@ -320,14 +407,256 @@
           <div class="text-xs text-[--ink-500]" data-i18n="footer.tagline"></div>
         </div>
       </div>
+      <nav class="flex items-center gap-6 text-sm text-[--ink-700] font-medium">
+        <a href="#about" data-i18n="footer.about"></a>
+        <a href="#login" data-goto="login" data-i18n="footer.login"></a>
+        <a href="#signup" data-goto="signup" data-i18n="footer.signup"></a>
+      </nav>
       <div class="text-xs text-[--ink-500] text-center sm:text-end">
         <div>&copy; <span id="year"></span> FlyWise. <span data-i18n="footer.rights"></span></div>
-        <div class="mt-1" data-i18n="footer.research"></div>
       </div>
       <a href="admin.html" class="admin-link text-[10px] text-[--ink-300] hover:text-[--ink-500] transition" aria-hidden="true">•</a>
     </div>
   </footer>
 </main>
+
+<!-- ============================================================= -->
+<!-- VIEW: LOGIN                                                    -->
+<!-- ============================================================= -->
+<section id="view-login" class="view min-h-screen items-center justify-center pt-32 pb-20 px-6 relative overflow-hidden">
+  <div class="blob w-[360px] h-[360px] top-10 -start-20" style="background: var(--violet);"></div>
+  <div class="w-full max-w-md relative z-10">
+    <div class="auth-card glass p-8 sm:p-10 reveal in-view">
+      <div class="text-center">
+        <img src="assets/img/logo.png" alt="FlyWise" class="h-9 w-auto mx-auto" />
+        <h1 class="mt-5 text-2xl font-extrabold font-display" data-i18n="auth.login_title"></h1>
+        <p class="mt-2 text-sm text-[--ink-500]" data-i18n="auth.login_subtitle"></p>
+      </div>
+
+      <p class="form-toplevel-error hidden mt-6 text-sm font-medium text-center px-4 py-3 rounded-xl2" style="background: rgba(226,54,112,0.08); color:#E23670;"></p>
+
+      <form id="login-form" class="mt-7 space-y-5" novalidate>
+        <div>
+          <label class="field-label" for="login-email" data-i18n="auth.email"></label>
+          <input id="login-email" type="email" class="field-input" data-i18n-placeholder="auth.email_placeholder" autocomplete="email" />
+          <p id="login-email-error" class="field-error-msg"></p>
+        </div>
+        <div>
+          <label class="field-label" for="login-password" data-i18n="auth.password"></label>
+          <input id="login-password" type="password" class="field-input" data-i18n-placeholder="auth.password_placeholder" autocomplete="current-password" />
+          <p id="login-password-error" class="field-error-msg"></p>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2 text-[--ink-700]">
+            <input type="checkbox" class="rounded" />
+            <span data-i18n="auth.remember_me"></span>
+          </label>
+          <a href="#" class="text-[--indigo] font-medium" data-i18n="auth.forgot_password"></a>
+        </div>
+        <button type="submit" id="login-submit-btn" class="btn btn-primary w-full">
+          <span class="spinner"></span>
+          <span class="btn-label" data-i18n="auth.login_btn"></span>
+        </button>
+      </form>
+
+      <div class="flex items-center gap-4 my-6">
+        <span class="divider-line"></span>
+        <span class="text-xs text-[--ink-500] font-medium" data-i18n="auth.or_divider"></span>
+        <span class="divider-line"></span>
+      </div>
+
+      <button type="button" id="login-google-btn" class="btn btn-google">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47a5.53 5.53 0 01-2.4 3.63v3h3.88c2.27-2.1 3.57-5.19 3.57-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.88-3c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.95H1.27v3.1A12 12 0 0012 24z"/><path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 010-4.58v-3.1H1.27a12 12 0 000 10.78z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 001.27 6.61l4 3.1C6.22 6.86 8.87 4.75 12 4.75z"/></svg>
+        <span data-i18n="auth.continue_google"></span>
+      </button>
+
+      <p class="mt-7 text-center text-sm text-[--ink-500]">
+        <span data-i18n="auth.no_account"></span>
+        <a href="#signup" data-goto="signup" class="text-[--indigo] font-semibold" data-i18n="auth.create_one"></a>
+      </p>
+      <p class="mt-4 text-center">
+        <a href="#" data-goto="" class="text-xs text-[--ink-300] hover:text-[--ink-500]" data-i18n="auth.back_home"></a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- VIEW: SIGNUP                                                   -->
+<!-- ============================================================= -->
+<section id="view-signup" class="view min-h-screen items-center justify-center pt-32 pb-20 px-6 relative overflow-hidden">
+  <div class="blob w-[360px] h-[360px] top-10 -end-20" style="background: var(--pink);"></div>
+  <div class="w-full max-w-md relative z-10">
+    <div class="auth-card glass p-8 sm:p-10 reveal in-view">
+      <div class="text-center">
+        <img src="assets/img/logo.png" alt="FlyWise" class="h-9 w-auto mx-auto" />
+        <h1 class="mt-5 text-2xl font-extrabold font-display" data-i18n="auth.signup_title"></h1>
+        <p class="mt-2 text-sm text-[--ink-500]" data-i18n="auth.signup_subtitle"></p>
+      </div>
+
+      <p class="form-toplevel-error hidden mt-6 text-sm font-medium text-center px-4 py-3 rounded-xl2" style="background: rgba(226,54,112,0.08); color:#E23670;"></p>
+
+      <form id="signup-form" class="mt-7 space-y-5" novalidate>
+        <div>
+          <label class="field-label" for="signup-name" data-i18n="auth.full_name"></label>
+          <input id="signup-name" type="text" class="field-input" data-i18n-placeholder="auth.full_name_placeholder" autocomplete="name" />
+          <p id="signup-name-error" class="field-error-msg"></p>
+        </div>
+        <div>
+          <label class="field-label" for="signup-email" data-i18n="auth.email"></label>
+          <input id="signup-email" type="email" class="field-input" data-i18n-placeholder="auth.email_placeholder" autocomplete="email" />
+          <p id="signup-email-error" class="field-error-msg"></p>
+        </div>
+        <div>
+          <label class="field-label" for="signup-password" data-i18n="auth.password"></label>
+          <input id="signup-password" type="password" class="field-input" data-i18n-placeholder="auth.password_placeholder" autocomplete="new-password" />
+          <p id="signup-password-error" class="field-error-msg"></p>
+        </div>
+        <div>
+          <label class="field-label" for="signup-confirm" data-i18n="auth.confirm_password"></label>
+          <input id="signup-confirm" type="password" class="field-input" data-i18n-placeholder="auth.password_placeholder" autocomplete="new-password" />
+          <p id="signup-confirm-error" class="field-error-msg"></p>
+        </div>
+        <label class="flex items-start gap-2.5 text-sm text-[--ink-700]">
+          <input id="signup-terms" type="checkbox" class="mt-0.5 rounded" />
+          <span>
+            <span data-i18n="auth.terms_prefix"></span>
+            <a href="#" class="text-[--indigo] font-medium" data-i18n="auth.terms_link"></a>
+            <span data-i18n="auth.and"></span>
+            <a href="#" class="text-[--indigo] font-medium" data-i18n="auth.privacy_link"></a>
+          </span>
+        </label>
+        <button type="submit" id="signup-submit-btn" class="btn btn-primary w-full">
+          <span class="spinner"></span>
+          <span class="btn-label" data-i18n="auth.signup_btn"></span>
+        </button>
+      </form>
+
+      <div class="flex items-center gap-4 my-6">
+        <span class="divider-line"></span>
+        <span class="text-xs text-[--ink-500] font-medium" data-i18n="auth.or_divider"></span>
+        <span class="divider-line"></span>
+      </div>
+
+      <button type="button" id="signup-google-btn" class="btn btn-google">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47a5.53 5.53 0 01-2.4 3.63v3h3.88c2.27-2.1 3.57-5.19 3.57-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.88-3c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.95H1.27v3.1A12 12 0 0012 24z"/><path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 010-4.58v-3.1H1.27a12 12 0 000 10.78z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 001.27 6.61l4 3.1C6.22 6.86 8.87 4.75 12 4.75z"/></svg>
+        <span data-i18n="auth.continue_google"></span>
+      </button>
+
+      <p class="mt-7 text-center text-sm text-[--ink-500]">
+        <span data-i18n="auth.have_account"></span>
+        <a href="#login" data-goto="login" class="text-[--indigo] font-semibold" data-i18n="auth.login_instead"></a>
+      </p>
+      <p class="mt-4 text-center">
+        <a href="#" data-goto="" class="text-xs text-[--ink-300] hover:text-[--ink-500]" data-i18n="auth.back_home"></a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- VIEW: COMING SOON                                              -->
+<!-- ============================================================= -->
+<section id="view-coming-soon" class="view min-h-screen pt-32 pb-24 px-6 relative overflow-hidden">
+  <div class="blob w-[460px] h-[460px] -top-20 -start-24" style="background: var(--indigo);"></div>
+  <div class="blob w-[400px] h-[400px] bottom-0 -end-24" style="background: var(--violet);"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="flex items-center justify-between reveal in-view">
+      <div class="flex items-center gap-3 glass rounded-full py-2 ps-2 pe-4">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white" style="background: var(--gradient-brand);">
+          <span data-user-name></span>
+        </div>
+        <div class="text-sm">
+          <div class="text-[--ink-500] text-xs" data-i18n="comingSoon.welcome"></div>
+          <div class="font-semibold" data-user-name></div>
+        </div>
+      </div>
+      <button type="button" data-logout class="btn btn-secondary text-sm" data-i18n="comingSoon.logout"></button>
+    </div>
+
+    <div class="text-center mt-16 reveal in-view">
+      <svg width="120" height="120" viewBox="0 0 120 120" class="mx-auto">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="url(#csGrad)" stroke-width="2" opacity="0.35"/>
+        <circle cx="60" cy="60" r="34" fill="url(#csGrad)" opacity="0.12"/>
+        <path d="M40 63l24-16-6 16 6 16z" fill="url(#csGrad)"/>
+        <defs>
+          <linearGradient id="csGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#5E2BFF"/><stop offset="0.55" stop-color="#C04CFD"/><stop offset="1" stop-color="#FC6DAB"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <h1 class="mt-6 text-3xl sm:text-5xl font-extrabold font-display leading-tight max-w-2xl mx-auto" data-i18n="comingSoon.title"></h1>
+      <p class="mt-5 text-[--ink-500] text-lg leading-relaxed max-w-xl mx-auto" data-i18n="comingSoon.subtitle"></p>
+    </div>
+
+    <!-- Countdown -->
+    <div class="mt-14 reveal in-view">
+      <div class="text-center text-xs font-bold font-eyebrow tracking-widest uppercase text-[--ink-500]" data-i18n="comingSoon.countdown_label"></div>
+      <div id="countdown" class="mt-4 flex items-center justify-center gap-3 sm:gap-5">
+        <div class="glass rounded-xl2 py-4 px-3 text-center countdown-unit">
+          <div id="cd-days" class="text-2xl sm:text-3xl font-extrabold font-display text-gradient countdown-num">00</div>
+          <div class="text-[11px] text-[--ink-500] mt-1" data-i18n="comingSoon.days"></div>
+        </div>
+        <div class="glass rounded-xl2 py-4 px-3 text-center countdown-unit">
+          <div id="cd-hours" class="text-2xl sm:text-3xl font-extrabold font-display text-gradient countdown-num">00</div>
+          <div class="text-[11px] text-[--ink-500] mt-1" data-i18n="comingSoon.hours"></div>
+        </div>
+        <div class="glass rounded-xl2 py-4 px-3 text-center countdown-unit">
+          <div id="cd-minutes" class="text-2xl sm:text-3xl font-extrabold font-display text-gradient countdown-num">00</div>
+          <div class="text-[11px] text-[--ink-500] mt-1" data-i18n="comingSoon.minutes"></div>
+        </div>
+        <div class="glass rounded-xl2 py-4 px-3 text-center countdown-unit">
+          <div id="cd-seconds" class="text-2xl sm:text-3xl font-extrabold font-display text-gradient countdown-num">00</div>
+          <div class="text-[11px] text-[--ink-500] mt-1" data-i18n="comingSoon.seconds"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notify + Explore -->
+    <div class="mt-14 max-w-lg mx-auto reveal in-view">
+      <form id="notify-form" class="flex flex-col sm:flex-row gap-3">
+        <input id="notify-email" type="email" class="field-input flex-1" data-i18n-placeholder="comingSoon.notify_placeholder" />
+        <button type="submit" id="notify-submit-btn" class="btn btn-primary whitespace-nowrap">
+          <span class="spinner"></span>
+          <span class="btn-label" data-i18n="comingSoon.notify_btn"></span>
+        </button>
+      </form>
+      <p id="notify-success" class="hidden mt-3 text-sm text-center font-medium" style="color:#16A34A;" data-i18n="comingSoon.notify_success"></p>
+      <div class="mt-5 text-center">
+        <a href="#about" data-goto="" class="text-sm text-[--indigo] font-semibold" data-i18n="comingSoon.explore_btn"></a>
+      </div>
+    </div>
+
+    <!-- Locked feature preview -->
+    <div class="mt-24">
+      <h2 class="text-center text-xl font-bold font-display reveal" data-i18n="comingSoon.preview_title"></h2>
+      <div class="mt-8 grid sm:grid-cols-3 gap-5">
+        <div class="locked-card card glass reveal reveal-delay-1 p-6 h-32 flex items-end">
+          <span class="locked-badge" style="top:10px;"><span data-i18n="future.locked"></span></span>
+          <h3 class="locked-blur font-semibold text-sm" data-i18n="future.card1"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-2 p-6 h-32 flex items-end">
+          <span class="locked-badge" style="top:10px;"><span data-i18n="future.locked"></span></span>
+          <h3 class="locked-blur font-semibold text-sm" data-i18n="future.card2"></h3>
+        </div>
+        <div class="locked-card card glass reveal reveal-delay-3 p-6 h-32 flex items-end">
+          <span class="locked-badge" style="top:10px;"><span data-i18n="future.locked"></span></span>
+          <h3 class="locked-blur font-semibold text-sm" data-i18n="future.card3"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hidden shared gradient definition, reused by the success icon on the thank-you view -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5E2BFF"/><stop offset="0.55" stop-color="#C04CFD"/><stop offset="1" stop-color="#FC6DAB"/>
+    </linearGradient>
+  </defs>
+</svg>
 
 <!-- ============================================================= -->
 <!-- VIEW: SURVEY                                                   -->
@@ -377,12 +706,13 @@
     </div>
     <p id="thanks-save-status" class="mt-3 text-xs text-[--ink-300]"></p>
     <p class="mt-6 text-xs text-[--ink-300]" data-i18n="thanks.note"></p>
-    <a href="#top" id="thanks-home-btn" class="btn btn-primary mt-9" data-i18n="thanks.back_home"></a>
+    <a href="#" id="thanks-home-btn" data-goto="" class="btn btn-primary mt-9" data-i18n="thanks.back_home"></a>
   </div>
 </section>
 
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics-compat.js"></script>
 <script src="assets/js/firebase-config.js"></script>
 <script src="assets/js/translations.js"></script>
